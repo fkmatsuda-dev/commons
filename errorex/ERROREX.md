@@ -33,6 +33,3 @@ if errorex.IS(err, ERROR_CODE_EXAMPLE) {
 // Handle error
 }
 ```
-
-## Contribution
-If you want to contribute to the "errorex" package, feel free to submit pull requests or open issues on our GitHub repository: github.com/fkmatsuda-dev/commons.
