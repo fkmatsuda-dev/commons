@@ -68,4 +68,18 @@ func TestErrorEX(t *testing.T) {
 		}
 	})
 
+	// Test Detail, Message and Error
+	t.Run("Test Detail, Message and Error", func(t *testing.T) {
+		err := New(TestErrorCode, description, description)
+		if err.Detail() != description {
+			t.Errorf("Detail is not the same")
+		}
+		if err.Message() != description {
+			t.Errorf("Message is not the same")
+		}
+		if err.Error() != TestErrorCode+": "+description {
+			t.Errorf("Error is not the same")
+		}
+	})
+
 }
