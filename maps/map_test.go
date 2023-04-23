@@ -25,7 +25,7 @@ func TestMapKeys(t *testing.T) {
 	}
 }
 
-func TestMapKeys_nil(t *testing.T) {
+func TestMapKeysNil(t *testing.T) {
 	var m map[string]string
 	keys := MapKeys(m)
 	if keys != nil {
@@ -47,7 +47,7 @@ func TestInterfaceMap(t *testing.T) {
 	}
 }
 
-func TestInterfaceMap_nil(t *testing.T) {
+func TestInterfaceMapNil(t *testing.T) {
 	var m map[string]string
 	im := InterfaceMap(m)
 	if im != nil {

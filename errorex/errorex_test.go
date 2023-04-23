@@ -9,9 +9,10 @@ import (
 func TestErrorEX(t *testing.T) {
 
 	// Register an error code
-	const TEST_ERROR_CODE = "001"
-	const UNREGISTERED_TEST_ERROR_CODE = "002"
-	RegisterErrorCode(TEST_ERROR_CODE, "Test Error")
+	const TestErrorCode = "001"
+	const UnregisteredTestErrorCode = "002"
+	const description = "Test Error"
+	RegisterErrorCode(TestErrorCode, description)
 
 	// try to register the same code again
 	t.Run("Try to register an existing code", func(t *testing.T) {
@@ -20,7 +21,7 @@ func TestErrorEX(t *testing.T) {
 				t.Errorf("The code was not registered")
 			}
 		}()
-		RegisterErrorCode(TEST_ERROR_CODE, "Test Error")
+		RegisterErrorCode(TestErrorCode, description)
 	})
 
 	// try to create an unregistered error
@@ -30,13 +31,13 @@ func TestErrorEX(t *testing.T) {
 				t.Errorf("The code was registered")
 			}
 		}()
-		_ = New(UNREGISTERED_TEST_ERROR_CODE, "Unregistered error code", "Unregistered error code error")
+		_ = New(UnregisteredTestErrorCode, "Unregistered error code", "Unregistered error code error")
 	})
 
 	// Test IS
 	t.Run("Test IS", func(t *testing.T) {
-		err := New(TEST_ERROR_CODE, "Test Error", "Test Error")
-		if !IS(err, TEST_ERROR_CODE) {
+		err := New(TestErrorCode, description, description)
+		if !IS(err, TestErrorCode) {
 			t.Errorf("The error code is not the same")
 		}
 	})
@@ -48,21 +49,21 @@ func TestErrorEX(t *testing.T) {
 				t.Errorf("The code was registered")
 			}
 		}()
-		err := New(TEST_ERROR_CODE, "Unregistered error code", "Unregistered error code error")
-		_ = IS(err, UNREGISTERED_TEST_ERROR_CODE)
+		err := New(TestErrorCode, "Unregistered error code", "Unregistered error code error")
+		_ = IS(err, UnregisteredTestErrorCode)
 	})
 
 	// Test IS with a GO error
 	t.Run("Test IS with a GO error", func(t *testing.T) {
 		err := errors.New("GO error")
-		if IS(err, TEST_ERROR_CODE) {
+		if IS(err, TestErrorCode) {
 			t.Errorf("Must be false")
 		}
 	})
 
 	// Test IS with nil
 	t.Run("Test IS with nil", func(t *testing.T) {
-		if IS(nil, TEST_ERROR_CODE) {
+		if IS(nil, TestErrorCode) {
 			t.Errorf("Must be false")
 		}
 	})

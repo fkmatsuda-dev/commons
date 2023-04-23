@@ -2,7 +2,7 @@ package slices
 
 import "testing"
 
-func TestFindInSlice_int(t *testing.T) {
+func TestFindInSliceInt(t *testing.T) {
 	slice := []int{1, 5, 7, 8}
 	var (
 		idx   int
@@ -28,7 +28,7 @@ func TestFindInSlice_int(t *testing.T) {
 	}
 }
 
-func TestFindInSlice_string(t *testing.T) {
+func TestFindInSliceString(t *testing.T) {
 	slice := []string{"alpha", "beta", "gamma", "theta"}
 	var (
 		idx   int
@@ -59,7 +59,7 @@ type testStruct struct {
 	value int
 }
 
-func TestFindInSlice_struct(t *testing.T) {
+func TestFindInSliceStruct(t *testing.T) {
 	slice := []testStruct{{"alpha", 1}, {"beta", 5}, {"gamma", 7}, {"theta", 8}}
 	var (
 		idx   int
@@ -85,7 +85,7 @@ func TestFindInSlice_struct(t *testing.T) {
 	}
 }
 
-func TestInterfaceSlice_with_three_elements(t *testing.T) {
+func TestInterfaceSliceWithThreeElements(t *testing.T) {
 	slice := []int{1, 2, 3}
 	iSlice := InterfaceSlice(slice)
 	if iSlice == nil {
@@ -105,7 +105,7 @@ func TestInterfaceSlice_with_three_elements(t *testing.T) {
 	}
 }
 
-func TestInterfaceSlice_panic(t *testing.T) {
+func TestInterfaceSlicePanic(t *testing.T) {
 	var slice interface{}
 	defer func() {
 		if r := recover(); r == nil {
@@ -115,7 +115,7 @@ func TestInterfaceSlice_panic(t *testing.T) {
 	InterfaceSlice(slice)
 }
 
-func TestInterfaceSlice_nil(t *testing.T) {
+func TestInterfaceSliceNil(t *testing.T) {
 	var slice []int
 	if InterfaceSlice(slice) != nil {
 		t.Error("InterfaceSlice() should return nil")
