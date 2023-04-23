@@ -3,6 +3,7 @@ package files
 import (
 	"fmt"
 	"github.com/fkmatsuda-dev/commons/random"
+	"io"
 	"os"
 )
 
@@ -80,23 +81,15 @@ func ReadFile(fileName string) (string, error) {
 	}
 	// Close the file
 	defer func(file *os.File) {
-		err := file.Close()
-		if err != nil {
-			// log the error
-			_, err := fmt.Fprintf(os.Stderr, "The file %s could not be closed", fileName)
-			if err != nil {
-				fmt.Println(err)
-			}
-		}
+		_ = file.Close()
 	}(file)
 
 	// Read the file content
-	fileContent := make([]byte, 1024)
-	nr, err := file.Read(fileContent)
+	fileContent, err := io.ReadAll(file)
 	if err != nil {
 		return "", err
 	}
 
 	// Return the file content
-	return string(fileContent[:nr]), nil
+	return string(fileContent), nil
 }
