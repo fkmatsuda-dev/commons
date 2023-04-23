@@ -93,3 +93,23 @@ func ReadFile(fileName string) (string, error) {
 	// Return the file content
 	return string(fileContent), nil
 }
+
+// WriteFile writes a file with the given content
+func WriteFile(fileName string, content string) error {
+	// Create the file
+	file, err := os.Create(fileName)
+	if err != nil {
+		return err
+	}
+	// Close the file
+	defer func(file *os.File) {
+		_ = file.Close()
+	}(file)
+
+	// Write the file content
+	_, err = io.WriteString(file, content)
+	if err != nil {
+		return err
+	}
+	return nil
+}
