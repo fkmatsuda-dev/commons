@@ -1,7 +1,6 @@
 package files
 
 import (
-	"os"
 	"testing"
 )
 
@@ -17,19 +16,10 @@ func TestCreateTempDir(t *testing.T) {
 
 	// Write a file inside the directory
 	fileName := dirName + "/test.txt"
-	file, err := os.Create(fileName)
-	if err != nil {
-		t.Errorf("The file %s could not be created", fileName)
-	}
-
-	// Write some text inside the file
-	_, err = file.WriteString("Hello World")
+	err = WriteFile(fileName, "Hello World")
 	if err != nil {
 		t.Errorf("The file %s could not be written", fileName)
 	}
-
-	// Close the file
-	err = file.Close()
 
 	// Check if the file exists
 	if !Exists(fileName) {
