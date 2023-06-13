@@ -16,7 +16,7 @@ For more information about the "random" package, see [Package "random"](./random
 ## Installation
 to install the whole commons project run the following command:
 ```bash
-go get github.com/fkmatsuda-dev/commons/errorex
+go get github.com/fkmatsuda-dev/commons
 ```
 
 ## Contribution
