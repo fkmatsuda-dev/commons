@@ -6,9 +6,18 @@ import "reflect"
 // return it's index, otherwise it will return -1 and a bool of false.
 // original source https://golangcode.com/check-if-element-exists-in-slice
 func FindInSlice[T any](slice []T, val T) (int, bool) {
+	return FindInSliceFunc(slice, func(item T) bool {
+		return reflect.DeepEqual(item, val)
+	})
+}
+
+// FindInSliceFunc takes a slices and looks for an element in it using a
+// function to compare. If found it will return it's index, otherwise it will
+// return -1 and a bool of false.
+func FindInSliceFunc[T any](slice []T, f func(T) bool) (int, bool) {
 
 	for i, item := range slice {
-		if reflect.DeepEqual(item, val) {
+		if f(item) {
 			return i, true
 		}
 	}
