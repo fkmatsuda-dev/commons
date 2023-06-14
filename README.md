@@ -13,10 +13,14 @@ For more information about the "files" package, see [Package "files"](./files/FI
 The "random" package is a package that provides functions to generate random strings, characters and integers.
 For more information about the "random" package, see [Package "random"](./random/RANDOM.md).
 
+## Package "slices"
+The "slices" package is a package that provides functions to manipulate slices.
+For more information about the "slices" package, see [Package "slices"](./slices/SLICES.md).
+
 ## Installation
 to install the whole commons project run the following command:
 ```bash
-go get github.com/fkmatsuda-dev/commons/errorex
+go get github.com/fkmatsuda-dev/commons
 ```
 
 ## Contribution
